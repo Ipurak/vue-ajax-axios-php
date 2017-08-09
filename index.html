@@ -1,0 +1,29 @@
+<html>
+<head>
+<script src="vue/dist/vue.min.js"></script>
+<script src="axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="jobsfeed" v-for="customer in customers">
+    {{ customer.name }}
+  </div>
+</body>
+<script>
+
+  var app = new Vue({
+    el:'#jobsfeed',
+    data:{customers:{"name":"rr"}},
+    created() {
+      axios.post('service.php', { typ: "test" })
+        .then(function (response) {
+          console.log(response);
+          this.customers = response;
+        })
+        .catch(function (error) {
+            //error
+            console.log(error.message);
+        });
+    }
+  });
+</script>
+</html>
